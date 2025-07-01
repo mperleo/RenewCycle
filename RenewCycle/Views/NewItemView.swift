@@ -58,7 +58,7 @@ struct NewItemView: View {
     private func addTask() {
         let priceDouble = Double(price) ?? 0
         let newItem = Item(id: UUID(), purchaseDate: purchaseDate, model: model, brand: brand, category: category, price: priceDouble)
-        context.insert(newItem)
+        context.insert(newItem) 
         dismiss()
     }
 }

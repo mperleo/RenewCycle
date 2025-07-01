@@ -15,3 +15,16 @@ enum Categories: String, Codable, CaseIterable, Identifiable {
     
     var id: Self { self }
 }
+
+func getCategoryIcon(category: Categories) -> String {
+    switch category {
+    case Categories.technology:
+        return "macbook.and.iphone"
+    case Categories.sports:
+        return "bicycle"
+    case Categories.clothing:
+        return "shoe.2"
+    case Categories.car:
+        return "car.2.fill"
+    }
+}
