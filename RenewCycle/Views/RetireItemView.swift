@@ -19,7 +19,7 @@ struct RetireItemView: View {
         NavigationStack {
             Form {
                 VStack(alignment: .leading) {
-                        DatePicker("Fecha del cambio", selection: $retirementDate, displayedComponents: .date).padding(.top, 10)
+                        DatePicker("Fecha del cambio", selection: $retirementDate, displayedComponents: .date)
                 }
             }
             .toolbar{

@@ -15,9 +15,8 @@ struct ItemDetailView: View {
     var body: some View {
         NavigationStack {
             List {
-                ItemDetail(item: item)
+                ItemDetail(item: item).padding(.top, 10)
             }
-            .padding(.top, 10)
             .navigationTitle(item.model)
             .toolbar {
                 ToolbarItem {
@@ -36,7 +35,7 @@ struct ItemDetailView: View {
         }.fullScreenCover(isPresented: $showRetire) {
             RetireItemView(item: item)
         }.fullScreenCover(isPresented: $showEdit) {
-            RetireItemView(item: item)
+            EditItemView(item: item)
         }
     }
 
@@ -45,7 +44,7 @@ struct ItemDetailView: View {
             showRetire.toggle()
         }
     }
-    
+
     private func editItem() {
         withAnimation {
             showEdit.toggle()
