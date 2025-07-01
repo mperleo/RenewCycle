@@ -49,7 +49,7 @@ struct ContentView: View {
         List {
             ForEach(items) { item in
                 NavigationLink {
-                    ItemDetail(item: item)
+                    ItemDetailView(item: item)
                 }label: {
                     ItemRow(item: item)
                 }

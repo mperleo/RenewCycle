@@ -21,17 +21,17 @@ struct NewItemView: View {
         NavigationStack {
             Form {
                 VStack(alignment: .leading) {
-                    TextField("Modelo", text: $model).padding(.top, 10)
-                    TextField("Marca", text: $brand).padding(.top, 10)
-                    TextField("Precio", text: $price).padding(.top, 10)
-                    DatePicker("Fecha de la Tarea", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
-                    Picker(selection: $category) {
-                        ForEach(Categories.allCases) { category in
-                            Text(category.rawValue)
-                        }
-                    } label: {
-                        Text("Categoría")
-                    }.padding(.top, 10)
+                        TextField("Modelo", text: $model).padding(.top, 10)
+                        TextField("Marca", text: $brand).padding(.top, 10)
+                        TextField("Precio", text: $price).padding(.top, 10)
+                        DatePicker("Fecha de compra", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
+                        Picker(selection: $category) {
+                            ForEach(Categories.allCases) { category in
+                                Text(category.rawValue)
+                            }
+                        } label: {
+                            Text("Categoría")
+                        }.padding(.top, 10)
                 }
             }
             .navigationTitle(Text("Nuevo Item"))
