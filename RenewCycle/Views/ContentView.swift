@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var showAdd = false
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             VStack {
                 if items.isEmpty {
                     ContentUnavailableView(
@@ -38,9 +38,8 @@ struct ContentView: View {
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
-        } .fullScreenCover(isPresented: $showAdd) {
+        }
+        .fullScreenCover(isPresented: $showAdd) {
             NewItemView()
         }
     }

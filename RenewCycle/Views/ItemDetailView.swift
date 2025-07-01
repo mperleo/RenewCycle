@@ -8,55 +8,34 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    let item: Item
-
     @State private var showRetire = false
+    @State private var showEdit = false
+    let item: Item
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                List {
-                    HStack {
-                        Text(item.category.rawValue)
-                        Image(
-                            systemName: getCategoryIcon(category: item.category)
-                        )
+            List {
+                ItemDetail(item: item)
+            }
+            .padding(.top, 10)
+            .navigationTitle(item.model)
+            .toolbar {
+                ToolbarItem {
+                    Button(action: editItem) {
+                        Label("Edit Item", systemImage: "pencil")
                     }
-                    Text(
-                        "Comprado: "
-                            + item.purchaseDate.formatted(
-                                date: .long,
-                                time: .omitted
-                            )
-                    )
-                    Text(
-                        "Precio: "
-                        + String(item.price)
-                    )
-                    Text(
-                        "Usado: " + String(item.getDaysSincePurchase())
-                            + " días"
-                    )
-                    if item.retirementDate != nil {
-                        Text("Cambiado: "
-                             + (item.retirementDate?.formatted(
-                                date: .long,
-                                time: .omitted
-                             ) ?? "0"))
-                    }
-                }.padding(.top, 10).navigationTitle(item.model).toolbar {
-                    ToolbarItem {
-                        Button(action: retireItem) {
-                            Label(
-                                "Cambiar",
-                                systemImage:
-                                    "rectangle.portrait.and.arrow.right.fill"
-                            )
-                        }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        retireItem()
+                    } label: {
+                        Text("Renew")
                     }
                 }
             }
         }.fullScreenCover(isPresented: $showRetire) {
+            RetireItemView(item: item)
+        }.fullScreenCover(isPresented: $showEdit) {
             RetireItemView(item: item)
         }
     }
@@ -66,4 +45,22 @@ struct ItemDetailView: View {
             showRetire.toggle()
         }
     }
+    
+    private func editItem() {
+        withAnimation {
+            showEdit.toggle()
+        }
+    }
+}
+
+#Preview(traits: .sampledata) {
+    let item1 = Item(
+        id: UUID(),
+        purchaseDate: .now,
+        model: "macbook",
+        brand: "apple",
+        category: Categories.technology,
+        price: 1600.99
+    )
+    ItemDetailView(item: item1)
 }

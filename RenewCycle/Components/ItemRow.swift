@@ -16,7 +16,15 @@ struct ItemRow: View {
             HStack{
                 Text(item.purchaseDate.formatted(date: .long, time: .omitted))
                 Spacer()
-                Text(String(item.getDaysSincePurchase()) + " días")
+                
+                if item.retirementDate != nil {
+                    Text("Renewed")
+                    Text(String(item.getDaysBetweenPurchaseAndRetirement()) + " days")
+                    
+                }
+                else {
+                    Text(String(item.getDaysSincePurchase()) + " days")
+                }
             }
             .font(.subheadline).foregroundStyle(.secondary)
         }

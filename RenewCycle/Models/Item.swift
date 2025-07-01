@@ -35,4 +35,12 @@ final class Item {
         let components = Calendar.current.dateComponents([.day], from: purchaseDate, to: Date())
         return components.day ?? 0
     }
+    
+    public func getDaysBetweenPurchaseAndRetirement() -> Int {
+        guard let retirementDate = retirementDate else {
+            return 0
+        }
+        let components = Calendar.current.dateComponents([.day], from: purchaseDate, to: retirementDate)
+        return components.day ?? 0
+    }
 }

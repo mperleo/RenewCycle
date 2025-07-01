@@ -20,7 +20,7 @@ struct NewItemView: View {
     var body: some View {
         NavigationStack {
             Form {
-                VStack(alignment: .leading) {
+                List {
                         TextField("Modelo", text: $model).padding(.top, 10)
                         TextField("Marca", text: $brand).padding(.top, 10)
                         TextField("Precio", text: $price).padding(.top, 10)
