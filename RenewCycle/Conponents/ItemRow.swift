@@ -1,0 +1,24 @@
+//
+//  ItemRow.swift
+//  RenewCycle
+//
+//  Created by Miguel Pérez León on 1/7/25.
+//
+
+import SwiftUI
+
+struct ItemRow: View {
+    let item: Item
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(item.model).font(.headline)
+            HStack{
+                Text(item.purchaseDate.formatted(date: .long, time: .omitted))
+                Spacer()
+                Text(String(item.getDaysSincePurchase()) + " días")
+            }
+            .font(.subheadline).foregroundStyle(.secondary)
+        }
+    }
+}
