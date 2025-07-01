@@ -44,7 +44,7 @@ struct EditItemView: View {
                     ).padding(.top, 10)
                     DatePicker(
                         "Renewed date",
-                        selection: $purchaseDate,
+                        selection: $retirementDate,
                         displayedComponents: .date
                     ).padding(.top, 10)
                     Picker(selection: $category) {
