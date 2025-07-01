@@ -15,10 +15,10 @@ final class Item {
     var retirementDate: Date?
     var model: String
     var brand: String
-    var category: Categorias
+    var category: Categories
     var price: Double
     
-    init(id: UUID, purchaseDate: Date, model: String, brand: String, category: Categorias, price: Double) {
+    init(id: UUID, purchaseDate: Date, model: String, brand: String, category: Categories, price: Double) {
         self.purchaseDate = purchaseDate
         self.model = model
         self.brand = brand

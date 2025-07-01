@@ -24,8 +24,8 @@ struct SampleData: PreviewModifier {
             configurations: [modelConfiguration]
         )
 
-        let item1 = Item( id: UUID(), purchaseDate: .now, model: "macbook", brand: "apple", category: Categorias.technology, price: 1600.99)
-        let item2 = Item( id: UUID(), purchaseDate: Date.distantPast, model: "iphone 13", brand: "apple", category: Categorias.technology, price: 1099.99)
+        let item1 = Item( id: UUID(), purchaseDate: .now, model: "macbook", brand: "apple", category: Categories.technology, price: 1600.99)
+        let item2 = Item( id: UUID(), purchaseDate: Date.distantPast, model: "iphone 13", brand: "apple", category: Categories.technology, price: 1099.99)
         
         item2.retireItem(retirementDate: Date.now)
         

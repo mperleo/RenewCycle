@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Categorias: String, Codable, CaseIterable, Identifiable {
+enum Categories: String, Codable, CaseIterable, Identifiable {
     case technology = "Technology"
     case sports = "Sports"
     case clothing = "Clothing"

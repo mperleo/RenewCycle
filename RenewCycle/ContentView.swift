@@ -44,7 +44,7 @@ struct ContentView: View {
     
     private func addItem() {
         withAnimation {
-            let newItem = Item(id: UUID(), purchaseDate: Date(), model: "modelo", brand: "brand", category: Categorias.sports, price: 9.99)
+            let newItem = Item(id: UUID(), purchaseDate: Date(), model: "modelo", brand: "brand", category: Categories.sports, price: 9.99)
             modelContext.insert(newItem)
         }
     }
