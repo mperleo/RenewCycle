@@ -21,26 +21,26 @@ struct NewItemView: View {
         NavigationStack {
             Form {
                 List {
-                        TextField("Modelo", text: $model).padding(.top, 10)
-                        TextField("Marca", text: $brand).padding(.top, 10)
-                        TextField("Precio", text: $price).padding(.top, 10)
-                        DatePicker("Fecha de compra", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
+                        TextField("Model", text: $model).padding(.top, 10)
+                        TextField("Brand", text: $brand).padding(.top, 10)
+                        TextField("Price", text: $price).padding(.top, 10)
+                        DatePicker("Buy date", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
                         Picker(selection: $category) {
                             ForEach(Categories.allCases) { category in
                                 Text(category.rawValue)
                             }
                         } label: {
-                            Text("Categoría")
+                            Text("Category")
                         }.padding(.top, 10)
                 }
             }
-            .navigationTitle(Text("Nuevo Item"))
+            .navigationTitle(Text("New Item"))
             .toolbar{
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         addTask()
                     }label: {
-                        Text("Añadir")
+                        Text("Add")
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {
@@ -48,7 +48,7 @@ struct NewItemView: View {
                         dismiss()
                     }label: {
                         Image(systemName: "chevron.backward")
-                        Text("Cancelar")
+                        Text("Cancel")
                     }
                 }
             }
