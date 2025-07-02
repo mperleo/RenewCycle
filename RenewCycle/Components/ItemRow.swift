@@ -9,22 +9,18 @@ import SwiftUI
 
 struct ItemRow: View {
     let item: Item
-    
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text(item.model).font(.headline)
-            HStack{
+            HStack {
+                Text(item.model).font(.headline)
+                Text(item.model).font(.subheadline)
+            }
+
+            HStack {
                 Text(item.purchaseDate.formatted(date: .long, time: .omitted))
                 Spacer()
-                
-                if item.renewDate != nil {
-                    Text("Renewed")
-                    Text(String(item.getDaysBetweenPurchaseAndRetirement()) + " days")
-                    
-                }
-                else {
-                    Text(String(item.getDaysSincePurchase()) + " days")
-                }
+                Text(item.getUsageStringInYearsAndDays())
             }
             .font(.subheadline).foregroundStyle(.secondary)
         }

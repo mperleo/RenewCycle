@@ -36,15 +36,13 @@ struct ItemDetail: View {
             ).bold()
         }
         
+        HStack {
+            Text("Used")
+            Spacer()
+            Text(item.getUsageStringInYearsAndDays()).bold()
+        }
+        
         if item.renewDate != nil {
-            HStack {
-                Text("Used")
-                Spacer()
-                Text(
-                    String(item.getDaysBetweenPurchaseAndRetirement())
-                    + " days"
-                ).bold()
-            }
             HStack {
                 Text("Renew date")
                 Spacer()
@@ -54,17 +52,7 @@ struct ItemDetail: View {
                         time: .omitted
                     ) ?? "0")
                 ).bold()
-            }
-        }
-        else {
-            HStack {
-                Text("Used")
-                Spacer()
-                Text(
-                    String(item.getDaysSincePurchase())
-                    + " days"
-                ).bold()
-            }
+            }.padding(.bottom, 10)
         }
     }
 }
