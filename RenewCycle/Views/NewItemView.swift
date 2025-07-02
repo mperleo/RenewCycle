@@ -10,14 +10,14 @@ import SwiftUI
 struct NewItemView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
-    
+
     @State private var showConfirmation: Bool = false
     @State private var model: String = ""
     @State private var brand: String = ""
     @State private var purchaseDate: Date = Date()
     @State private var category: Categories = .technology
     @State private var price: String = ""
-    
+
     var body: some View {
         NavigationStack {
             Form {
@@ -32,21 +32,29 @@ struct NewItemView: View {
                             }
                         } label: {
                             Text("Category")
-                        }.padding(.top, 10)
+                        }
                     }
                     Section(header: Text("Item Dates")) {
-                        DatePicker("Buy date", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
+                        DatePicker(
+                            "Buy date",
+                            selection: $purchaseDate,
+                            displayedComponents: .date
+                        )
                     }
                 }
             }
             .navigationTitle(Text("New Item"))
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         showConfirmation.toggle()
-                    }label: {
+                    } label: {
                         Text("Save")
-                    }.confirmationDialog("Are you sure you wanna add the item?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                    }.confirmationDialog(
+                        "Are you sure you wanna add the item?",
+                        isPresented: $showConfirmation,
+                        titleVisibility: .visible
+                    ) {
                         Button("Save", role: .destructive) {
                             addTask()
                         }
@@ -55,7 +63,7 @@ struct NewItemView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         dismiss()
-                    }label: {
+                    } label: {
                         Image(systemName: "chevron.backward")
                         Text("Cancel")
                     }
@@ -63,11 +71,18 @@ struct NewItemView: View {
             }
         }
     }
-    
+
     private func addTask() {
         let priceDouble = Double(price) ?? 0
-        let newItem = Item(id: UUID(), purchaseDate: purchaseDate, model: model, brand: brand, category: category, price: priceDouble)
-        context.insert(newItem) 
+        let newItem = Item(
+            id: UUID(),
+            purchaseDate: purchaseDate,
+            model: model,
+            brand: brand,
+            category: category,
+            price: priceDouble
+        )
+        context.insert(newItem)
         dismiss()
     }
 }

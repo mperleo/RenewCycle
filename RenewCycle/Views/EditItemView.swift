@@ -17,16 +17,19 @@ struct EditItemView: View {
     @State private var model: String
     @State private var brand: String
     @State private var purchaseDate: Date
-    @State private var retirementDate: Date
     @State private var category: Categories
     @State private var price: String
-    
+
+    @State private var retirementDate: Date
+    @State private var showRenewDate: Bool = false
+
     init(item: Item) {
         self.item = item
         self.model = item.model
         self.brand = item.brand
         self.purchaseDate = item.purchaseDate
         self.retirementDate = item.renewDate ?? Date()
+        self.showRenewDate = item.renewDate != nil
         self.category = item.category
         self.price = String(item.price)
     }
@@ -45,30 +48,39 @@ struct EditItemView: View {
                             }
                         } label: {
                             Text("Categoría")
-                        }.padding(.top, 10)
+                        }
                     }
-                    Section(header: Text("Item Dates")) {
+                    Section(header: Text("Buy Date")) {
                         DatePicker(
                             "Buy date",
                             selection: $purchaseDate,
                             displayedComponents: .date
-                        ).padding(.top, 10)
-                        DatePicker(
-                            "Renewed date",
-                            selection: $retirementDate,
-                            displayedComponents: .date
-                        ).padding(.top, 10)
+                        )
+                    }
+                    Section(header: Text("Renew Date")) {
+                        Toggle("Renewed", isOn: $showRenewDate)
+                        if showRenewDate {
+                            DatePicker(
+                                "Renewed date",
+                                selection: $retirementDate,
+                                displayedComponents: .date
+                            )
+                        }
                     }
                 }
             }
-            .navigationTitle(Text("Edit Item"))
+            .navigationTitle(Text("Edit \(item.model)"))
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         showConfirmation.toggle()
-                    }label: {
+                    } label: {
                         Text("Save")
-                    }.confirmationDialog("Are you sure you wanna save this changes?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                    }.confirmationDialog(
+                        "Are you sure you wanna save this changes?",
+                        isPresented: $showConfirmation,
+                        titleVisibility: .visible
+                    ) {
                         Button("Save", role: .destructive) {
                             editTask()
                         }
@@ -90,10 +102,10 @@ struct EditItemView: View {
         item.model = model
         item.brand = brand
         item.purchaseDate = purchaseDate
-        item.renewDate = retirementDate
+        item.renewDate = showRenewDate ? retirementDate : item.renewDate
         item.category = category
         item.price = Double(price) ?? 0
-        
+
         context.insert(item)
         dismiss()
     }

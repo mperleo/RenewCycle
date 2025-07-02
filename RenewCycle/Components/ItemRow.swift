@@ -14,7 +14,11 @@ struct ItemRow: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(item.model).font(.headline)
-                Text(item.model).font(.subheadline)
+                Text(item.brand).font(.subheadline)
+                Spacer()
+                if item.renewDate != nil {
+                    Text("Renewed")
+                }
             }
 
             HStack {

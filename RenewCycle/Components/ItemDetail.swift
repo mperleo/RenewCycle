@@ -12,11 +12,22 @@ struct ItemDetail: View {
 
     var body: some View {
         HStack {
+            Text("Category ")
+            Spacer()
             Text(item.category.rawValue).bold()
             Image(
                 systemName: getCategoryIcon(category: item.category)
             )
         }
+        
+        HStack {
+            Text("Brand ")
+            Spacer()
+            Text(
+                item.brand
+            ).bold()
+        }
+        
         HStack {
             Text("Buy date ")
             Spacer()

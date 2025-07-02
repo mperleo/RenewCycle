@@ -10,28 +10,36 @@ import SwiftUI
 struct RetireItemView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
-    
+
     let item: Item
-    
+
     @State private var retirementDate: Date = Date()
     @State private var showConfirmation: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Renew date")) {
                     VStack(alignment: .leading) {
-                        DatePicker("Renew Date", selection: $retirementDate, displayedComponents: .date)
+                        DatePicker(
+                            "Renew Date",
+                            selection: $retirementDate,
+                            displayedComponents: .date
+                        )
                     }
                 }
             }
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         showConfirmation.toggle()
-                    }label: {
+                    } label: {
                         Text("Save")
-                    }.confirmationDialog("Are you sure you wanna renew the item?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                    }.confirmationDialog(
+                        "Are you sure you wanna renew the item?",
+                        isPresented: $showConfirmation,
+                        titleVisibility: .visible
+                    ) {
                         Button("Renew", role: .destructive) {
                             reNewItem()
                         }
@@ -40,7 +48,7 @@ struct RetireItemView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         dismiss()
-                    }label: {
+                    } label: {
                         Image(systemName: "chevron.backward")
                         Text("Cancel")
                     }
@@ -48,7 +56,7 @@ struct RetireItemView: View {
             }
         }
     }
-    
+
     private func reNewItem() {
         item.renewItem(renewDate: retirementDate)
         context.insert(item)
