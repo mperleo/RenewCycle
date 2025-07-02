@@ -20,9 +20,9 @@ struct ContentView: View {
             VStack {
                 if items.isEmpty {
                     ContentUnavailableView(
-                        "No hay items aún.",
+                        "No items",
                         systemImage: "ipad.landscape.and.iphone.slash",
-                        description: Text("No hay items en la app")
+                        description: Text("let's add some new items!")
                     )
                 } else {
                     main
