@@ -11,6 +11,7 @@ struct NewItemView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     
+    @State private var showConfirmation: Bool = false
     @State private var model: String = ""
     @State private var brand: String = ""
     @State private var purchaseDate: Date = Date()
@@ -21,10 +22,10 @@ struct NewItemView: View {
         NavigationStack {
             Form {
                 List {
+                    Section(header: Text("Item information")) {
                         TextField("Model", text: $model).padding(.top, 10)
                         TextField("Brand", text: $brand).padding(.top, 10)
                         TextField("Price", text: $price).padding(.top, 10)
-                        DatePicker("Buy date", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
                         Picker(selection: $category) {
                             ForEach(Categories.allCases) { category in
                                 Text(category.rawValue)
@@ -32,15 +33,23 @@ struct NewItemView: View {
                         } label: {
                             Text("Category")
                         }.padding(.top, 10)
+                    }
+                    Section(header: Text("Item Dates")) {
+                        DatePicker("Buy date", selection: $purchaseDate, displayedComponents: .date).padding(.top, 10)
+                    }
                 }
             }
             .navigationTitle(Text("New Item"))
             .toolbar{
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
-                        addTask()
+                        showConfirmation.toggle()
                     }label: {
-                        Text("Add")
+                        Text("Save")
+                    }.confirmationDialog("Are you sure you wanna add the item?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                        Button("Save", role: .destructive) {
+                            addTask()
+                        }
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {

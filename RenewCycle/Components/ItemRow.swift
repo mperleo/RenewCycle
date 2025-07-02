@@ -17,7 +17,7 @@ struct ItemRow: View {
                 Text(item.purchaseDate.formatted(date: .long, time: .omitted))
                 Spacer()
                 
-                if item.retirementDate != nil {
+                if item.renewDate != nil {
                     Text("Renewed")
                     Text(String(item.getDaysBetweenPurchaseAndRetirement()) + " days")
                     

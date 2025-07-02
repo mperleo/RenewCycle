@@ -14,20 +14,27 @@ struct RetireItemView: View {
     let item: Item
     
     @State private var retirementDate: Date = Date()
+    @State private var showConfirmation: Bool = false
     
     var body: some View {
         NavigationStack {
             Form {
-                VStack(alignment: .leading) {
-                        DatePicker("Fecha del cambio", selection: $retirementDate, displayedComponents: .date)
+                Section(header: Text("Renew date")) {
+                    VStack(alignment: .leading) {
+                        DatePicker("Renew Date", selection: $retirementDate, displayedComponents: .date)
+                    }
                 }
             }
             .toolbar{
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
-                        retireItem()
+                        showConfirmation.toggle()
                     }label: {
-                        Text("Guardar")
+                        Text("Save")
+                    }.confirmationDialog("Are you sure you wanna renew the item?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                        Button("Renew", role: .destructive) {
+                            reNewItem()
+                        }
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {
@@ -35,15 +42,15 @@ struct RetireItemView: View {
                         dismiss()
                     }label: {
                         Image(systemName: "chevron.backward")
-                        Text("Cancelar")
+                        Text("Cancel")
                     }
                 }
             }
         }
     }
     
-    private func retireItem() {
-        item.retireItem(retirementDate: retirementDate)
+    private func reNewItem() {
+        item.renewItem(renewDate: retirementDate)
         context.insert(item)
         dismiss()
     }

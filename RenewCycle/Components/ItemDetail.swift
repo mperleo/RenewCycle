@@ -36,7 +36,7 @@ struct ItemDetail: View {
             ).bold()
         }
         
-        if item.retirementDate != nil {
+        if item.renewDate != nil {
             HStack {
                 Text("Used")
                 Spacer()
@@ -49,7 +49,7 @@ struct ItemDetail: View {
                 Text("Renew date")
                 Spacer()
                 Text(
-                    (item.retirementDate?.formatted(
+                    (item.renewDate?.formatted(
                         date: .long,
                         time: .omitted
                     ) ?? "0")

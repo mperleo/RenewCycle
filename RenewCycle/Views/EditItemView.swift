@@ -13,6 +13,7 @@ struct EditItemView: View {
 
     let item: Item
 
+    @State private var showConfirmation: Bool = false
     @State private var model: String
     @State private var brand: String
     @State private var purchaseDate: Date
@@ -20,12 +21,12 @@ struct EditItemView: View {
     @State private var category: Categories
     @State private var price: String
     
-    init( item: Item) {
+    init(item: Item) {
         self.item = item
         self.model = item.model
         self.brand = item.brand
         self.purchaseDate = item.purchaseDate
-        self.retirementDate = item.retirementDate ?? Date()
+        self.retirementDate = item.renewDate ?? Date()
         self.category = item.category
         self.price = String(item.price)
     }
@@ -34,35 +35,43 @@ struct EditItemView: View {
         NavigationStack {
             Form {
                 List {
-                    TextField("Model", text: $model).padding(.top, 10)
-                    TextField("Brand", text: $brand).padding(.top, 10)
-                    TextField("Price", text: $price).padding(.top, 10)
-                    DatePicker(
-                        "Buy date",
-                        selection: $purchaseDate,
-                        displayedComponents: .date
-                    ).padding(.top, 10)
-                    DatePicker(
-                        "Renewed date",
-                        selection: $retirementDate,
-                        displayedComponents: .date
-                    ).padding(.top, 10)
-                    Picker(selection: $category) {
-                        ForEach(Categories.allCases) { category in
-                            Text(category.rawValue)
-                        }
-                    } label: {
-                        Text("Categoría")
-                    }.padding(.top, 10)
+                    Section(header: Text("Item information")) {
+                        TextField("Model", text: $model).padding(.top, 10)
+                        TextField("Brand", text: $brand).padding(.top, 10)
+                        TextField("Price", text: $price).padding(.top, 10)
+                        Picker(selection: $category) {
+                            ForEach(Categories.allCases) { category in
+                                Text(category.rawValue)
+                            }
+                        } label: {
+                            Text("Categoría")
+                        }.padding(.top, 10)
+                    }
+                    Section(header: Text("Item Dates")) {
+                        DatePicker(
+                            "Buy date",
+                            selection: $purchaseDate,
+                            displayedComponents: .date
+                        ).padding(.top, 10)
+                        DatePicker(
+                            "Renewed date",
+                            selection: $retirementDate,
+                            displayedComponents: .date
+                        ).padding(.top, 10)
+                    }
                 }
             }
             .navigationTitle(Text("Edit Item"))
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
-                        editTask()
-                    } label: {
-                        Text("Add")
+                        showConfirmation.toggle()
+                    }label: {
+                        Text("Save")
+                    }.confirmationDialog("Are you sure you wanna save this changes?", isPresented: $showConfirmation, titleVisibility: .visible) {
+                        Button("Save", role: .destructive) {
+                            editTask()
+                        }
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {
@@ -81,7 +90,7 @@ struct EditItemView: View {
         item.model = model
         item.brand = brand
         item.purchaseDate = purchaseDate
-        item.retirementDate = retirementDate
+        item.renewDate = retirementDate
         item.category = category
         item.price = Double(price) ?? 0
         

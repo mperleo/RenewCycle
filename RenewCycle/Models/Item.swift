@@ -12,7 +12,7 @@ import SwiftData
 final class Item {
     @Attribute(.unique) var id: UUID
     var purchaseDate: Date
-    var retirementDate: Date?
+    var renewDate: Date?
     var model: String
     var brand: String
     var category: Categories
@@ -27,8 +27,8 @@ final class Item {
         self.id = id
     }
     
-    public func retireItem(retirementDate: Date) {
-        self.retirementDate = retirementDate
+    public func renewItem(renewDate: Date) {
+        self.renewDate = renewDate
     }
     
     public func getDaysSincePurchase() -> Int {
@@ -37,7 +37,7 @@ final class Item {
     }
     
     public func getDaysBetweenPurchaseAndRetirement() -> Int {
-        guard let retirementDate = retirementDate else {
+        guard let retirementDate = renewDate else {
             return 0
         }
         let components = Calendar.current.dateComponents([.day], from: purchaseDate, to: retirementDate)

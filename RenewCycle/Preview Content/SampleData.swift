@@ -27,7 +27,7 @@ struct SampleData: PreviewModifier {
         let item1 = Item( id: UUID(), purchaseDate: .now, model: "macbook", brand: "apple", category: Categories.technology, price: 1600.99)
         let item2 = Item( id: UUID(), purchaseDate: Date.distantPast, model: "iphone 13", brand: "apple", category: Categories.technology, price: 1099.99)
         
-        item2.retireItem(retirementDate: Date.now)
+        item2.renewItem(renewDate: Date.now)
         
         container.mainContext.insert(item1)
         container.mainContext.insert(item2)
