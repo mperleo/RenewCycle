@@ -5,6 +5,7 @@
 //  Created by Miguel Pérez León on 30/6/25.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct NewItemView: View {
@@ -12,11 +13,17 @@ struct NewItemView: View {
     @Environment(\.modelContext) private var context
 
     @State private var showConfirmation: Bool = false
+    @State private var showImagePicker: Bool = false
+    @State private var photoPickerItem: PhotosPickerItem?
+    @State private var itemImage: Image?
+
     @State private var model: String = ""
     @State private var brand: String = ""
     @State private var purchaseDate: Date = Date()
     @State private var category: Categories = .technology
     @State private var price: String = ""
+    @State private var image: Data = Data()
+    @State private var receipt: Data = Data()
 
     var body: some View {
         NavigationStack {
@@ -41,6 +48,17 @@ struct NewItemView: View {
                             displayedComponents: .date
                         )
                     }
+                    Section(header: Text("Item image")) {
+                        PhotosPicker("Select a photo", selection: $photoPickerItem, matching: .images) {
+                            itemImage?.resizable().scaledToFit()
+                        }
+                    }
+                }
+            }
+            .onChange(of: photoPickerItem) { _, _ in
+                Task {
+                    itemImage = try await photoPickerItem?.loadTransferable(
+                        type: Image.self)
                 }
             }
             .navigationTitle(Text("New Item"))
@@ -80,7 +98,9 @@ struct NewItemView: View {
             model: model,
             brand: brand,
             category: category,
-            price: priceDouble
+            price: priceDouble,
+            image: image,
+            receipt: receipt
         )
         context.insert(newItem)
         dismiss()

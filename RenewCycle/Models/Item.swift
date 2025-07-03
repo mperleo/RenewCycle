@@ -17,6 +17,8 @@ final class Item {
     var brand: String
     var category: Categories
     var price: Double
+    var image: Data
+    var receipt: Data
 
     init(
         id: UUID,
@@ -24,14 +26,18 @@ final class Item {
         model: String,
         brand: String,
         category: Categories,
-        price: Double
+        price: Double,
+        image: Data,
+        receipt: Data
     ) {
+        self.id = id
         self.purchaseDate = purchaseDate
         self.model = model
         self.brand = brand
         self.category = category
         self.price = price
-        self.id = id
+        self.image = image
+        self.receipt = receipt
     }
 
     public func renewItem(renewDate: Date) {

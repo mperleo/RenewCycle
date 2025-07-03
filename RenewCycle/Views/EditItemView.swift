@@ -111,14 +111,14 @@ struct EditItemView: View {
     }
 }
 
-#Preview(traits: .sampledata) {
-    let item1 = Item(
-        id: UUID(),
-        purchaseDate: .now,
-        model: "macbook",
-        brand: "apple",
-        category: Categories.technology,
-        price: 1600.99
-    )
-    EditItemView(item: item1)
-}
+//#Preview(traits: .sampledata) {
+//    let item1 = Item(
+//        id: UUID(),
+//        purchaseDate: .now,
+//        model: "macbook",
+//        brand: "apple",
+//        category: Categories.technology,
+//        price: 1600.99
+//    )
+//    EditItemView(item: item1)
+//}
