@@ -64,6 +64,12 @@ struct ItemDetail: View {
                     ) ?? "0")
                 ).bold()
             }.padding(.bottom, 10)
+            
+            HStack {
+                Text("Since purchase")
+                Spacer()
+                Text(item.getUsageStringInYearsAndDays(sincePurchase: true)).bold()
+            }.padding(.bottom, 10)
         }
     }
 }

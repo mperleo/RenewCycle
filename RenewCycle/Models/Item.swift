@@ -59,24 +59,17 @@ final class Item {
         return components.day ?? 0
     }
 
-    public func getUsageStringInYearsAndDays() -> String {
-        let totalDaysSincePurchase: Int = getDaysSincePurchase()
-        let totalDaysUntilRenew: Int = getDaysBetweenPurchaseAndRetirement()
+    public func getUsageStringInYearsAndDays(sincePurchase: Bool = false) -> String {
+        var  totalDaysUsed =
+        self.renewDate == nil || sincePurchase
+        ?  getDaysSincePurchase(): getDaysBetweenPurchaseAndRetirement()
+        
+        totalDaysUsed = totalDaysUsed == 0 ? 1 : totalDaysUsed
 
-        let yearsSincePurchase = totalDaysSincePurchase / 365
-        var daysSincePurchase = totalDaysSincePurchase % 365
+        let yearsUsed = totalDaysUsed / 365
+        let daysUsed = totalDaysUsed % 365
 
-        let yearsUntilRenew = totalDaysUntilRenew / 365
-        let daysUntilRenew = totalDaysUntilRenew % 365
-
-        if totalDaysUntilRenew > 0 {
-            return
-                "\(yearsUntilRenew > 0 ? String(yearsUntilRenew) + " years" : "" ) \(daysUntilRenew > 0 ? String(daysUntilRenew) + " days" : "")"
-        } else {
-            daysSincePurchase = daysSincePurchase == 0 ? 1 : daysSincePurchase
-
-            return
-                "\(yearsSincePurchase > 0 ? String(yearsSincePurchase) + " years" : "" ) \(daysSincePurchase > 0 ? String(daysSincePurchase) + " days" : "")"
-        }
+        return
+            "\(yearsUsed > 0 ? String(yearsUsed) + " " + String(localized: "years") : "" ) \(daysUsed > 0 ? String(daysUsed) + " " + String(localized: "days") : "")"
     }
 }

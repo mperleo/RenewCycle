@@ -129,6 +129,23 @@
         }
       }
     },
+    "days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "days"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "días"
+          }
+        }
+      }
+    },
     "Edit %@" : {
       "localizations" : {
         "en" : {
@@ -364,6 +381,16 @@
         }
       }
     },
+    "Since purchase" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desde la compra"
+          }
+        }
+      }
+    },
     "Used" : {
       "localizations" : {
         "en" : {
@@ -376,6 +403,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usado"
+          }
+        }
+      }
+    },
+    "years" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "años"
           }
         }
       }
