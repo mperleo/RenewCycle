@@ -18,7 +18,7 @@ struct ItemDetail: View {
             Image(
                 systemName: getCategoryIcon(category: item.category)
             )
-        }
+        }.padding(.bottom, 10)
         
         HStack {
             Text("Brand")
@@ -26,7 +26,7 @@ struct ItemDetail: View {
             Text(
                 item.brand
             ).bold()
-        }
+        }.padding(.bottom, 10)
         
         HStack {
             Text("Buy date")
@@ -37,7 +37,7 @@ struct ItemDetail: View {
                     time: .omitted
                 )
             ).bold()
-        }
+        }.padding(.bottom, 10)
         
         HStack {
             Text("Price")
@@ -45,13 +45,13 @@ struct ItemDetail: View {
             Text(
                 String(item.price) + "€"
             ).bold()
-        }
+        }.padding(.bottom, 10)
         
         HStack {
             Text("Used")
             Spacer()
             Text(item.getUsageStringInYearsAndDays()).bold()
-        }
+        }.padding(.bottom, 10)
         
         if item.renewDate != nil {
             HStack {
