@@ -12,7 +12,7 @@ struct ItemDetail: View {
 
     var body: some View {
         HStack {
-            Text("Category ")
+            Text("Category")
             Spacer()
             Text(item.category.rawValue).bold()
             Image(
@@ -21,7 +21,7 @@ struct ItemDetail: View {
         }
         
         HStack {
-            Text("Brand ")
+            Text("Brand")
             Spacer()
             Text(
                 item.brand
@@ -29,7 +29,7 @@ struct ItemDetail: View {
         }
         
         HStack {
-            Text("Buy date ")
+            Text("Buy date")
             Spacer()
             Text(
                 item.purchaseDate.formatted(
@@ -63,6 +63,12 @@ struct ItemDetail: View {
                         time: .omitted
                     ) ?? "0")
                 ).bold()
+            }.padding(.bottom, 10)
+            
+            HStack {
+                Text("Since purchase")
+                Spacer()
+                Text(item.getUsageStringInYearsAndDays(sincePurchase: true)).bold()
             }.padding(.bottom, 10)
         }
     }
