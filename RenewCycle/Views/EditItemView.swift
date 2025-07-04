@@ -47,21 +47,21 @@ struct EditItemView: View {
                                 Text(category.rawValue)
                             }
                         } label: {
-                            Text("Categoría")
+                            Text("Category")
                         }
                     }
-                    Section(header: Text("Buy Date")) {
+                    Section(header: Text("Buy date")) {
                         DatePicker(
                             "Buy date",
                             selection: $purchaseDate,
                             displayedComponents: .date
                         )
                     }
-                    Section(header: Text("Renew Date")) {
+                    Section(header: Text("Renew date")) {
                         Toggle("Renewed", isOn: $showRenewDate)
                         if showRenewDate {
                             DatePicker(
-                                "Renewed date",
+                                "Renew date",
                                 selection: $retirementDate,
                                 displayedComponents: .date
                             )

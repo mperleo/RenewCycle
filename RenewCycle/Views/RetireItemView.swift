@@ -22,7 +22,7 @@ struct RetireItemView: View {
                 Section(header: Text("Renew date")) {
                     VStack(alignment: .leading) {
                         DatePicker(
-                            "Renew Date",
+                            "Renew date",
                             selection: $retirementDate,
                             displayedComponents: .date
                         )
