@@ -11,7 +11,7 @@ struct ItemDetail: View {
     let item: Item
 
     var body: some View {
-        Section(header: Text("Item info")) {
+        Section(header: Text("Item information")) {
             
             HStack {
                 Text("Brand")
@@ -78,7 +78,7 @@ struct ItemDetail: View {
             }
             
             HStack {
-                Text("launch date")
+                Text("Launch date")
                 Spacer()
                 Text(
                     item.launchDate.formatted(
@@ -86,6 +86,12 @@ struct ItemDetail: View {
                         time: .omitted
                     )
                 ).bold()
+            }.padding(.bottom, 10)
+            
+            HStack {
+                Text("Since release")
+                Spacer()
+                Text(item.getTimeSinceLaunchStringInYearsAndDays()).bold()
             }.padding(.bottom, 10)
         }
         
