@@ -71,7 +71,7 @@ struct ContentView: View {
     var main: some View {
         List {
             if inUseItems.count > 0 {
-                Section(header: Text("In use")) {
+                Section(header: Text("In use (" + String(inUseItems.count) + ")")) {
                     ForEach(inUseItems) { item in
                         NavigationLink {
                             ItemDetailView(item: item)
@@ -83,7 +83,7 @@ struct ContentView: View {
             }
 
             if renewedItems.count > 0 {
-                Section(header: Text("Renewed")) {
+                Section(header: Text("Renewed (" + String(renewedItems.count) + ")")) {
                     ForEach(renewedItems) { item in
                         NavigationLink {
                             ItemDetailView(item: item)
