@@ -113,6 +113,17 @@
         }
       }
     },
+    "Car" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coche"
+          }
+        }
+      }
+    },
     "Category" : {
       "localizations" : {
         "en" : {
@@ -125,6 +136,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categoría"
+          }
+        }
+      }
+    },
+    "Clothing" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ropa"
           }
         }
       }
@@ -387,6 +409,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desde la compra"
+          }
+        }
+      }
+    },
+    "Sports" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deporte"
           }
         }
       }

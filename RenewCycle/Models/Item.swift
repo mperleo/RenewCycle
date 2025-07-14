@@ -13,6 +13,8 @@ final class Item {
     @Attribute(.unique) var id: UUID
     var purchaseDate: Date
     var renewDate: Date?
+    var launchDate: Date
+    var notes: String
     var model: String
     var brand: String
     var category: Categories
@@ -21,12 +23,16 @@ final class Item {
     init(
         id: UUID,
         purchaseDate: Date,
+        launchDate: Date,
         model: String,
         brand: String,
         category: Categories,
+        notes: String,
         price: Double
     ) {
         self.purchaseDate = purchaseDate
+        self.launchDate = launchDate
+        self.notes = notes
         self.model = model
         self.brand = brand
         self.category = category

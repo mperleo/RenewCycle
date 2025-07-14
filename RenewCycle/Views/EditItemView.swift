@@ -17,6 +17,7 @@ struct EditItemView: View {
     @State private var model: String
     @State private var brand: String
     @State private var purchaseDate: Date
+    @State private var launchDate: Date = Date()
     @State private var category: Categories
     @State private var price: String
 
@@ -28,6 +29,7 @@ struct EditItemView: View {
         self.model = item.model
         self.brand = item.brand
         self.purchaseDate = item.purchaseDate
+        self.launchDate = item.launchDate
         self.retirementDate = item.renewDate ?? Date()
         self.showRenewDate = item.renewDate != nil
         self.category = item.category
@@ -54,6 +56,11 @@ struct EditItemView: View {
                         DatePicker(
                             "Buy date",
                             selection: $purchaseDate,
+                            displayedComponents: .date
+                        )
+                        DatePicker(
+                            "Launch date",
+                            selection: $launchDate,
                             displayedComponents: .date
                         )
                     }
@@ -115,9 +122,11 @@ struct EditItemView: View {
     let item1 = Item(
         id: UUID(),
         purchaseDate: .now,
+        launchDate: .now,
         model: "macbook",
         brand: "apple",
         category: Categories.technology,
+        notes: "This is a sample item",
         price: 1600.99
     )
     EditItemView(item: item1)
