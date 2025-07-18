@@ -9,7 +9,6 @@ import Foundation
 
 enum Categories: String, Codable, CaseIterable, Identifiable {
     case technology = "Electronics"
-    case sports = "Sports"
     case clothing = "Fashion"
     case car = "Car"
     case bikes = "Bikes"
@@ -30,8 +29,6 @@ func getCategoryIcon(category: Categories) -> String {
     switch category {
     case Categories.technology:
         return "macbook.and.iphone"
-    case Categories.sports:
-        return "figure.run"
     case Categories.clothing:
         return "shoe.2"
     case Categories.car:
