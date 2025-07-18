@@ -13,9 +13,10 @@ struct ItemList: View {
 
     let items: [Item]
     let sectionLabel: String
+    let itemCount: Int
 
     var body: some View {
-        Section(header: Text(sectionLabel + " (" + String(items.count) + ")")) {
+        Section(header: Text(sectionLabel + " (" + String(itemCount) + ")")) {
             ForEach(items) { item in
                 NavigationLink {
                     ItemDetailView(item: item)

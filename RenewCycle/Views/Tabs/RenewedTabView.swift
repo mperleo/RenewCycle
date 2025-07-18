@@ -1,17 +1,17 @@
 //
-//  HomeView.swift
+//  RenewedTabView.swift
 //  RenewCycle
 //
 //  Created by Miguel Pérez León on 18/7/25.
 //
 
-import SwiftData
 import SwiftUI
+import SwiftData
 
-struct HomeView: View {
+struct RenewedTabView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item] = []
-
+    
     @State private var showAdd = false
     @State private var searchText: String = ""
     
@@ -26,18 +26,12 @@ struct HomeView: View {
         }
     }
     
-    private var inUseItems: [Item] {
-        filteredItems.filter {
-            $0.renewDate == nil
-        }.sorted { $0.purchaseDate > $1.purchaseDate }
-    }
-    
     private var renewedItems: [Item] {
         filteredItems.filter {
             $0.renewDate != nil
         }.sorted { $0.purchaseDate > $1.purchaseDate }
     }
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -49,24 +43,15 @@ struct HomeView: View {
                     )
                 } else {
                     List {
-                        if inUseItems.count > 0 {
-                            ItemList(items: inUseItems, sectionLabel: String("In use"))
-                        }
-                        
                         if renewedItems.count > 0 {
-                            ItemList(items: renewedItems, sectionLabel: "Renewed")
+                            ItemList(items: renewedItems, sectionLabel: "Renewed", itemCount: renewedItems.count)
                         }
                     }.searchable(text: $searchText)
                 }
-            }.navigationTitle("RenewCycle")
+            }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         EditButton()
-                    }
-                    ToolbarItem {
-                        Button(action: addItem) {
-                            Label("Add Item", systemImage: "plus")
-                        }
                     }
                 }
         }
@@ -74,7 +59,7 @@ struct HomeView: View {
             NewItemView()
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             showAdd.toggle()
@@ -84,5 +69,5 @@ struct HomeView: View {
 }
 
 #Preview(traits: .sampledata) {
-    ContentView()
+    RenewedTabView()
 }

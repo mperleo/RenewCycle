@@ -21,13 +21,13 @@ struct ContentView: View {
     func NativeTabView() -> some View {
         TabView {
             Tab.init("Home", systemImage: "house.fill") {
-                HomeView()
+                HomeTabView()
             }
-            Tab.init("Lists", systemImage: "list.bullet") {
-                HomeView()
+            Tab.init("In use", systemImage: "list.bullet") {
+                InUseTabView()
             }
-            Tab.init("Lists", systemImage: "list.bullet") {
-                HomeView()
+            Tab.init("Renewed", systemImage: "checklist.checked") {
+                RenewedTabView()
             }
         }
     }
