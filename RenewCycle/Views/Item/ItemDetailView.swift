@@ -32,9 +32,9 @@ struct ItemDetailView: View {
                     }
                 }
             }
-        }.fullScreenCover(isPresented: $showRetire) {
+        }.sheet(isPresented: $showRetire) {
             RetireItemView(item: item)
-        }.fullScreenCover(isPresented: $showEdit) {
+        }.sheet(isPresented: $showEdit) {
             EditItemView(item: item)
         }
     }
