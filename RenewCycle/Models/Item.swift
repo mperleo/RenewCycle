@@ -13,6 +13,8 @@ final class Item {
     @Attribute(.unique) var id: UUID
     var purchaseDate: Date
     var renewDate: Date?
+    var launchDate: Date
+    var notes: String
     var model: String
     var brand: String
     var category: Categories
@@ -21,12 +23,16 @@ final class Item {
     init(
         id: UUID,
         purchaseDate: Date,
+        launchDate: Date,
         model: String,
         brand: String,
         category: Categories,
+        notes: String,
         price: Double
     ) {
         self.purchaseDate = purchaseDate
+        self.launchDate = launchDate
+        self.notes = notes
         self.model = model
         self.brand = brand
         self.category = category
@@ -69,7 +75,31 @@ final class Item {
         let yearsUsed = totalDaysUsed / 365
         let daysUsed = totalDaysUsed % 365
 
+        return getStringYearsDays(years: yearsUsed, days: daysUsed)
+    }
+    
+    public func getDaysSinceRelease() -> Int {
+        let components = Calendar.current.dateComponents(
+            [.day],
+            from: launchDate,
+            to: Date()
+        )
+        return components.day ?? 0
+    }
+    
+    public func getTimeSinceLaunchStringInYearsAndDays() -> String {
+        var totalDays = getDaysSinceRelease()
+        
+        totalDays = totalDays == 0 ? 1 : totalDays
+        
+        let years = totalDays / 365
+        let days = totalDays % 365
+        
+        return getStringYearsDays(years: years, days: days)
+    }
+    
+    private func getStringYearsDays(years: Int, days: Int) -> String {
         return
-            "\(yearsUsed > 0 ? String(yearsUsed) + " " + String(localized: "years") : "" ) \(daysUsed > 0 ? String(daysUsed) + " " + String(localized: "days") : "")"
+            "\(years > 0 ? String(years) + " " + String(localized: "years") : "" ) \(days > 0 ? String(days) + " " + String(localized: "days") : "")"
     }
 }

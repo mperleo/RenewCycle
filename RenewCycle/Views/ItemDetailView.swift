@@ -56,9 +56,11 @@ struct ItemDetailView: View {
     let item1 = Item(
         id: UUID(),
         purchaseDate: .now,
+        launchDate: .now,
         model: "macbook",
         brand: "apple",
         category: Categories.technology,
+        notes: "sample",
         price: 1600.99
     )
     ItemDetailView(item: item1)

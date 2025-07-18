@@ -15,8 +15,10 @@ struct NewItemView: View {
     @State private var model: String = ""
     @State private var brand: String = ""
     @State private var purchaseDate: Date = Date()
+    @State private var launchDate: Date = Date()
     @State private var category: Categories = .technology
     @State private var price: String = ""
+    @State private var notes: String = ""
 
     var body: some View {
         NavigationStack {
@@ -26,6 +28,7 @@ struct NewItemView: View {
                         TextField("Model", text: $model).padding(.top, 10)
                         TextField("Brand", text: $brand).padding(.top, 10)
                         TextField("Price", text: $price).padding(.top, 10)
+                        TextField("Notes", text: $notes).padding(.top, 10)
                         Picker(selection: $category) {
                             ForEach(Categories.allCases) { category in
                                 Text(category.rawValue)
@@ -38,6 +41,11 @@ struct NewItemView: View {
                         DatePicker(
                             "Buy date",
                             selection: $purchaseDate,
+                            displayedComponents: .date
+                        )
+                        DatePicker(
+                            "Launch date",
+                            selection: $launchDate,
                             displayedComponents: .date
                         )
                     }
@@ -77,10 +85,12 @@ struct NewItemView: View {
         let newItem = Item(
             id: UUID(),
             purchaseDate: purchaseDate,
+            launchDate: launchDate,
             model: model,
             brand: brand,
             category: category,
-            price: priceDouble
+            notes: notes,
+            price: priceDouble,
         )
         context.insert(newItem)
         dismiss()

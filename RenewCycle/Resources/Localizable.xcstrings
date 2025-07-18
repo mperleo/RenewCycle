@@ -92,7 +92,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fecha de compra"
+            "value" : "F. Compra"
           }
         }
       }
@@ -113,6 +113,23 @@
         }
       }
     },
+    "Car" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Car"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coche"
+          }
+        }
+      }
+    },
     "Category" : {
       "localizations" : {
         "en" : {
@@ -125,6 +142,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categoría"
+          }
+        }
+      }
+    },
+    "Clothing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clothing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ropa"
           }
         }
       }
@@ -226,6 +260,22 @@
         }
       }
     },
+    "Launch date" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch date"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "F. Lanzamiento"
+          }
+        }
+      }
+    },
     "let's add some new items!" : {
       "localizations" : {
         "en" : {
@@ -286,6 +336,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay nada"
+          }
+        }
+      }
+    },
+    "Notes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notas"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notas"
           }
         }
       }
@@ -383,10 +449,65 @@
     },
     "Since purchase" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Since purchase"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desde la compra"
+          }
+        }
+      }
+    },
+    "Since release" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Since release"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desde lanzamiento"
+          }
+        }
+      }
+    },
+    "Sports" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sports"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deporte"
+          }
+        }
+      }
+    },
+    "Usage info" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usage info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información del uso"
           }
         }
       }
@@ -410,6 +531,12 @@
     "years" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "years"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
